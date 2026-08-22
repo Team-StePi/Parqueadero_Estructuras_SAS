@@ -1,4 +1,6 @@
-﻿public class Vehiculo {
+﻿package src.Clases;
+
+public class Vehiculo {
 
     private static int nextId = 1;
     private int Id;
@@ -10,14 +12,14 @@
         MOTOCICLETA
     }
     private Persona Propietario;
-}
 
-public Vehiculo(String marca, String modelo, Persona propietario) {
+
+public Vehiculo(String marca, String modelo, Persona propietario, TipoVehiculo tipo) {
     Id = nextId++;
     Marca = marca;
     Modelo = modelo;
     Propietario = propietario;
-    Tipo = TipoVehiculo;
+    Tipo = tipo;
 }
 
 public int getId() {
@@ -54,4 +56,14 @@ public void setPropietario(Persona propietario) {
 
 public void setTipo(TipoVehiculo tipo) {
     Tipo = tipo;
+}
+
+public String getNombrePropietario(){
+    return Propietario.getNombre();
+}
+
+public String getCedulaPropietario(){
+    return Propietario.getCedula();
+}
+
 }
