@@ -1,5 +1,7 @@
 ﻿package src.Clases;
 
+import src.Clases.Planes.TipoPlan;
+
 public class Vehiculo {
 
     private static int nextId = 1;
@@ -12,14 +14,15 @@ public class Vehiculo {
         MOTOCICLETA
     }
     private Persona Propietario;
+    private Planes Plan;
 
-
-public Vehiculo(String marca, String modelo, Persona propietario, TipoVehiculo tipo) {
+public Vehiculo(String marca, String modelo, Persona propietario, TipoVehiculo tipo, Planes plan) {
     Id = nextId++;
     Marca = marca;
     Modelo = modelo;
     Propietario = propietario;
     Tipo = tipo;
+    Plan = plan;
 }
 
 public int getId() {
@@ -42,6 +45,30 @@ public TipoVehiculo getTipo() {
     return Tipo;
 }
 
+public Planes getPlan(){
+    return Plan;
+}
+
+public String getNombrePropietario(){
+    return Propietario.getNombre();
+}
+
+public String getCedulaPropietario(){
+    return Propietario.getCedula();
+}
+
+public static TipoPlan[] getTiposDePlanes() {
+    return TipoPlan.values();
+}
+
+public Double getPrecio() {
+    return Plan.getPrecio() ;
+}
+
+public Double getDescuento() {
+    return Plan.getDescuento();
+}
+
 public void setMarca(String marca) {
     Marca = marca;
 }
@@ -58,12 +85,7 @@ public void setTipo(TipoVehiculo tipo) {
     Tipo = tipo;
 }
 
-public String getNombrePropietario(){
-    return Propietario.getNombre();
-}
 
-public String getCedulaPropietario(){
-    return Propietario.getCedula();
-}
+
 
 }

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import src.Clases.Persona;
 import src.Clases.Vehiculo; 
+import src.Clases.Planes;
 
 public class MetodoVehiculo {
 
@@ -16,13 +17,9 @@ public class MetodoVehiculo {
                 System.out.print("Ingrese el número de identificación del propietario: ");
                 String cedulaPropietario = sc.next();
 
-                 Persona propietario = new Persona(nombrePropietario, cedulaPropietario); 
-
-                System.out.println("Ingrese la marca del vehiculo: ");
-                String marca = sc.next();
-                System.out.println("Ingrese el modelo del vehiculo: ");
-                String modelo = sc.next();
-                System.out.println("Seleccione el tipo de vehiculo: ");
+                Persona propietario = new Persona(nombrePropietario, cedulaPropietario); 
+                
+                System.out.println("Seleccione el tipo de vehiculo que va a ingresar: ");
 
                 Vehiculo.TipoVehiculo[] opciones = Vehiculo.TipoVehiculo.values();
                 int seleccion = -1;
@@ -44,10 +41,48 @@ public class MetodoVehiculo {
                             }
                         }  
 
-                        Vehiculo.TipoVehiculo tipoElegido = opciones[seleccion - 1];
+                System.out.println("Ingrese la marca del vehiculo: ");
+                String marca = sc.next();
+                System.out.println("Ingrese el modelo del vehiculo: ");
+                String modelo = sc.next();
+                
+                Vehiculo.TipoVehiculo tipoElegido = opciones[seleccion - 1];
 
-                        Vehiculo p = new Vehiculo(marca, modelo, propietario, tipoElegido);
-                        o[i][j] = p;
+                System.out.println("Seleccione el tipo de plan de pagos:");
+                Planes.TipoPlan[] opc = Planes.TipoPlan.values();
+
+                int sel = -1;
+                    while (sel < 1 || sel > opc.length) {
+                        System.out.println("Seleccione el tipo de plan de pagos:");
+                        for (int k = 0; k < opc.length; k++) {
+                            System.out.println((k + 1) + ". " + opc[k]);
+                        }
+                        System.out.print("Ingrese el número de la opción: ");
+                
+                        if (sc.hasNextInt()) {
+                            sel = sc.nextInt();
+                            if (sel < 1 || sel > opc.length) {
+                                System.out.println("Opción inválida. Intente de nuevo.");
+                            }
+                            } else {
+                                System.out.println("Error: Debe ingresar un número.");
+                                sc.next();
+                            }
+                        }  
+
+                Planes.TipoPlan tipoPlan = opc[sel - 1];
+                
+                System.out.println("Ingrese el precio del plan: ");
+                Double precio = sc.nextDouble();
+
+                System.out.println("Ingrese el porcentaje de descuento que aplica para este vehiculo:");
+                Double desc = sc.nextDouble();
+
+                Planes planAsignado = new Planes(tipoPlan, precio, desc);
+
+                Vehiculo p = new Vehiculo(marca, modelo, propietario, tipoElegido,planAsignado);
+
+                o[i][j] = p;
         }
     }
         return o;
