@@ -1,4 +1,6 @@
-﻿public class Planes {
+﻿package src.Clases;
+
+public class Planes {
 
     private static int nextId = 1;
     private int Id;
